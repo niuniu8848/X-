@@ -1,0 +1,46 @@
+{
+   "background": {
+      "page": "bg.html"
+   },
+   "browser_action": {
+      "default_icon": "images/16.png",
+      "default_title": "X推筛选助手",
+	  "default_popup":"popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "css/style.css", "css/toastr.css"],
+      "js": [ "lib/jquery.min.js", "lib/easing.js", "lib/toastr.js", "lib/config.js", "js/insertJs.js"],
+      "matches": [ "*://x.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "辅助筛选X客户 本地检索数据，不会向X发送任何数据杜绝封号风险",
+   "icons": {
+      "128": "images/128.png",
+      "16": "images/16.png",
+      "48": "images/48.png"
+   },
+   "manifest_version": 2,
+   "name": "X推筛选助手",
+   "permissions": [ 
+      "tabs",
+      "cookies",
+      "activeTab",
+      "background",
+      "management",
+      "storage",
+      "https://*/*",
+      "http://*/*",
+      "webRequestBlocking",
+      "webRequest",
+      "browsingData",
+      "notifications",
+      "system.cpu",
+      "system.display",
+      "system.memory"
+   ],
+   "version": "3.0",
+   "homepage_url": "https://x.com/",
+   "web_accessible_resources": [ "*" ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

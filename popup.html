@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<link href="lib/layui/css/layui.css" rel="stylesheet">
+	<style>
+
+
+		::-webkit-scrollbar {
+		    width: 8px;
+		    height: 8px;
+		}
+
+		::-webkit-scrollbar-track {
+		    background-color: #f3f3f3;
+		    -webkit-border-radius: 2em;
+		    -moz-border-radius: 2em;
+		    border-radius: 2em;
+		}
+
+		::-webkit-scrollbar-thumb {
+		    background-color: #c0c0c0;
+		    -webkit-border-radius: 2em;
+		    -moz-border-radius: 2em;
+		    border-radius: 2em;
+		}
+
+		body {
+			width:380px!important;
+			margin:10px;
+			height: 500px;
+			/*height: 200px;*/
+		}
+		fieldset{
+			text-align: center;
+			padding: 35px 0px 10px 0px!important;
+		}
+		.layui-elem-field legend {
+		    margin-left: 0;
+		}
+		footer{
+			text-align: center;
+    		font-size: 12px;
+			color: lightgrey;
+		}
+		footer a{
+			color: lightgrey;
+		}
+		.checked_btn{
+			background: #ffc107!important;
+		}
+		.layui-tab-title li{
+			width: 25%;
+		}
+		.layui-form-switch{
+			margin-top: 0;
+		}
+		.layui-form-item{
+			margin-bottom: 0;
+		}
+		.cidingitem{
+		    display: flex;
+		    justify-content: flex-start;
+		    align-items: center;
+	        margin-bottom: 15px;
+		}
+		.cidingtitle{
+			margin-left: 10px;
+		}
+		.huang{
+		    position: absolute;
+		    width: 18px;
+		    right: 25px;
+		    /*top: -5px;*/
+		}
+	</style>
+</head>
+<body>
+
+	<legend style="font-weight: 700;font-size: 16px; line-height: 40px;">
+		<img class="logo" src="/images/128.png" alt="" style="position: relative;width: 29px;">【X推筛选助手】
+		<span id="expireDate" class="layui-badge-rim" style="font-weight: 500;position: absolute;right: 30px; top: 20px;color: #ff5722;">未激活</span>
+		<i class="layui-icon layui-icon-delete" id="reset" style=" font-size: 18px; font-weight: 500; font-weight: 500; position: absolute; right: 10px; top: 10px;"></i>
+	</legend>
+
+	<!-- <fieldset class="layui-elem-field"> -->
+
+
+	<div class="layui-tab layui-tab-card layui-inline" style="width: 100%; margin: 10px 0;" overflow="">
+		<div class="layui-field-box" style="box-sizing: border-box;padding-bottom: 0;">
+			<form class="layui-form" action="" id="form">
+				<div>
+				    <div style="display: flex;justify-content: center;">
+				      	<input type="text" name="text" style="width: 100%;text-align: center; padding: 2px;" id="kami" autocomplete="off" class="layui-input" placeholder="输入卡密">
+						<a href="javascript:void(0)" id="active" class="layui-btn ">
+							<i class="layui-icon layui-icon-set-sm"></i> <span>激活</span>
+						</a>
+				    </div>
+			    </div>
+			    <div>
+			    	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+					  <!-- <ul class="layui-tab-title">
+					    <li class="layui-this">
+					    	邀约
+					    	<img src="/images/huang.png" class="huang">
+					    </li>
+					    <li>
+					    	留言
+					    	<img src="/images/huang.png" class="huang">
+					    </li>
+					    <li>
+					    	计划
+					    	<img src="/images/huang.png" class="huang">
+					    </li>
+					  </ul> -->
+						<div class="layui-tab-content" style="height: 370px;overflow: auto;padding: 15px 0 0 0;">
+						    <div class="layui-tab-item layui-show">
+							    <div class="layui-row">
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="showfans" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">显示粉丝数量</span>
+									    </div>
+								    </div>
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="showfrd" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">显示关注数量</span>
+									    </div>
+								    </div>
+							    </div>
+							    <div class="layui-row">
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem" style="margin: 0;">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="showtips" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">显示提示词</span>
+									    </div>
+								    </div>
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem" style="margin: 0;">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="showcity" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">显示归属地</span>
+									    </div>
+								    </div>
+							    </div>
+
+
+								<hr>
+								<span style="color: red; font-size: 16px; font-weight: bold; 								display: block; text-align: center; margin: 10px 0;">
+								    用户关注列表 显示功能设置
+								</span>
+								<hr>
+
+							    <div class="layui-row">
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hideJia" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏虚假人</span>
+									    </div>
+								    </div>
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hideBlack" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏屏蔽词用户</span>
+									    </div>
+								    </div>
+							    </div>
+							    <div class="layui-row">
+    								<div class="layui-col-xs12">
+								    	<div class="cidingitem" style="margin: 0;">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hideOtherFans" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏超出粉丝数用户</span>
+									    </div>
+								    </div>
+							    </div>
+								
+								<hr>
+								<span style="color: red; font-size: 16px; font-weight: bold; 								display: block; text-align: center; margin: 10px 0;">
+								    评论区 引用  转帖列表功能设置 卡顿请勿开启
+								</span>
+								<hr>
+
+							    <div class="layui-row">
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hidePinglun" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏帖子留言(评论区 引用)</span>
+									    </div>
+								    </div>
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hideBlack_PL" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏屏蔽词(评论区 转帖)</span>
+									    </div>
+								    </div>
+							    </div>
+							    <div class="layui-row">
+    								<div class="layui-col-xs6">
+								    	<div class="cidingitem" style="margin: 0;">
+									    	<div class="layui-form-item">
+										      	<input type="checkbox" name="hideOtherFans_PL" lay-skin="switch">
+										  	</div>
+									    	<span class="cidingtitle">隐藏超出粉丝用户(评论区 转帖)</span>
+									    </div>
+								    </div>
+							    </div>
+
+								<hr>
+
+							    <div class="layui-row">
+    								<div class="layui-col-xs12">
+								    	<div class="cidingitem">
+									    	<span class="cidingtitle" style="margin-right: 20px;">粉丝范围高亮</span>
+									    	<div class="layui-form-item" style=" display: flex;">
+							    				<input type="text" id="minfans" style="width: 78px;text-align: center; padding: 0;" name="title" lay-verify="title" autocomplete="off" placeholder="最低粉丝" class="layui-input">
+							    				<span style="line-height: 38px;margin: 0 10px;"> - </span>
+							    				<input type="text" id="maxfans" style="width: 78px;text-align: center; padding: 0;" name="title" lay-verify="title" autocomplete="off" placeholder="最高粉丝" class="layui-input">
+										  	</div>
+									    </div>
+								    </div>
+							    </div>
+
+
+							    <div class="layui-row">
+    								<div class="layui-col-xs12">
+								    	<div class="cidingitem">
+									    	<!-- <div class="layui-form-item">
+										      	<input type="checkbox" name="autoyao" lay-skin="switch">
+										  	</div> -->
+									    	<span class="cidingtitle">打开我→</span>
+									    	<a id="yaotxt" href="javascript:void(0)" class="layui-btn layui-btn-primary layui-border-green layui-btn-sm cidingtitle">填写屏蔽词</a><span class="cidingtitle">打开点击云端同步</span>
+								    	</div>
+									</div>
+    								<div class="layui-col-xs12">
+								    	<div class="cidingitem">
+									    	<!-- <div class="layui-form-item">
+										      	<input type="checkbox" name="autoyao" lay-skin="switch">
+										  	</div> -->
+									    	<span class="cidingtitle">打开我→</span>
+									    	<a id="zhutxt" href="javascript:void(0)" class="layui-btn layui-btn-primary layui-border-green layui-btn-sm cidingtitle">填写注意词</a><span class="cidingtitle">可以使用云端数据</span>
+								    	</div>
+									</div>
+    								<div class="layui-col-xs12">
+								    	<div class="cidingitem">
+									    	<!-- <div class="layui-form-item">
+										      	<input type="checkbox" name="autoyao" lay-skin="switch">
+										  	</div> -->
+									    	<span class="cidingtitle">打开我→</span>
+									    	<a id="jiatxt" href="javascript:void(0)" class="layui-btn layui-btn-primary layui-border-green layui-btn-sm cidingtitle">填写虚假人</a><span class="cidingtitle">内置云端同步</span>
+								    	</div>
+									</div>
+									<span style="font-size: 12px;margin-left: 5px; color: red;">注意：修改 屏蔽词 / 注意词 / 虚假人 需要刷新页面才生效 每隔一段时间同步一次服务器的最新数据</span>
+									    
+								</div>
+						    </div>
+						    <div class="layui-tab-item">
+						    	<div class="cidingitem">
+							    	<div class="layui-form-item">
+								      	<input type="checkbox" name="autoping" lay-skin="switch">
+								  	</div>
+							    	<span class="cidingtitle">自动好评留言话术</span>
+							    	<a id="pingtxt" href="javascript:void(0)" class="layui-btn layui-btn-primary layui-border-green layui-btn-sm cidingtitle">填写话术</a>
+							   		
+							    </div>
+						    </div>
+						    <div class="layui-tab-item">待开发</div>
+						</div>
+					</div>      
+			    </div>
+				<div style="display: none;">
+				    <div style="display: flex;justify-content: center;">
+						<a href="javascript:void(0)" id="start" class="layui-btn layui-btn-fluid">
+							<i class="layui-icon layui-icon-play"></i> <span>启动插件</span>
+						</a>
+						<!-- <a href="javascript:void(0)" id="start2" class="layui-btn layui-btn-danger">
+							<i class="layui-icon layui-icon-console"></i> <span>启动采集粉丝</span>
+						</a> -->
+				    </div>
+			    </div>
+			</form>
+	  	</div>  
+	</div>  
+
+	<!-- </fieldset> -->
+	
+
+	<footer style="padding-bottom: 10px; color: #009688;">
+		<!-- <span style=""><a id="auther" target="_blank">create by ciding</a></span> -->
+		历史卡密：<span id="hiscard"> - </span>
+		<button type="button" id="reactive" class="layui-btn layui-btn-primary layui-border-green layui-btn-xs" style="display: none;">重新激活</button>
+
+		<div style=" margin-top: 10px; color: #03a9f4;">黄色粉丝量 红色指定粉丝数 蓝色无用客户 推特调黑色不伤眼 	</div><span style="color: red;">收款地址TY9J5nYia2yLje4Ch5hJr6aEXe8dfpNA45  150U/月</span></div>
+		<!-- <i class="layui-icon layui-icon-service" id="kefu" style="cursor: pointer;color: #00bcd4; font-size: 20px; vertical-align: middle;margin-left: 10px;;"></i> -->
+	</footer>
+
+	<script type="text/javascript" src="lib/layui/layui.js"></script>
+	<script type="text/javascript" src="lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+</body>
+</html>
